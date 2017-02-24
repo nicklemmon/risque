@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Risque - a game with armies fightig or something</title>
+
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="container__col">
+        <div class="card-row">
+          <section class="card card--1-2">
+            <div class="card__blk">
+              <div class="info-row">
+                <h2 class="info-row__heading">Attacker</h2>
+
+                <span id="attacker-strength">0</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card card--1-2">
+            <div class="card__blk">
+              <div class="info-row">
+                <h2 class="info-row__heading">Defender</h2>
+
+                <span id="defender-strength">0</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="container__col">
+        <section class="card">
+          <div class="card__blk">
+            <div class="info-row">
+              <h2 class="info-row__heading">Attacker Roll</h2>
+
+              <span id="attacker-roll">0</span>
+
+              <span class="info-row__footnote" id="attack-dice"></span>
+            </div>
+
+            <div class="info-row">
+              <h2 class="info-row__heading">Defender Roll</h2>
+
+              <span id="defender-roll">0</span>
+
+              <span class="info-row__footnote" id="defend-dice"></span>
+            </div>
+
+            <div class="info-row">
+              <h2 class="info-row__heading">Result</h2>
+
+              <span id="result-val">0</span>
+            </div>
+          </div>
+
+          <div class="info-row info-row--results">
+            <span id="result-text">All quiet on the western front</span>
+          </div>
+
+          <button id="roll-btn" class="btn btn--primary u-mg-t--md u-mg-x--auto">Roll them dice</button>
+        </section>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="scripts.js"></script>
+  </body>
+</html>
