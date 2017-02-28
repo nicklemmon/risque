@@ -1,0 +1,25 @@
+/*************/
+/* Variables */
+/*************/
+:root {
+  /* colors */
+  --blue: #29538B;
+  --light-blue: #446592;
+  --red: #D93332;
+  --dark-red: #912221;
+  --white: #FFF;
+  --off-white: #D7CBC4;
+  --gray: #E3E3E3;
+  --dark-gray: #CCC;
+
+  /* spacing */
+  --base-spacing: 10px;
+  --spacing--sm: var(--base-spacing);
+  --spacing--md: calc( var(--base-spacing) * 2 );
+  --spacing--lg: calc( var(--base-spacing) * 3 );
+  --spacing--xl: calc( var(--base-spacing) * 4 );
+
+  /* misc */
+  --border-radius: 5px;
+  --max-width: 800px;
+}

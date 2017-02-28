@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Risque - a game with armies fightig or something</title>
+    <title>Risque - a game with armies fighting or something</title>
 
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -10,27 +10,37 @@
   <body>
     <main class="container">
       <div class="container__col">
-        <div class="card-row">
-          <section class="card card--1-2">
-            <div class="card__blk">
-              <div class="info-row">
-                <h2 class="info-row__heading">Attacker</h2>
+        <section class="card">
+          <div class="card__blk">
+            <div class="info-row">
+              <h2 class="info-row__heading">Attacker Armies</h2>
 
-                <span id="attacker-strength">0</span>
+              <span id="attacker-strength">0</span>
+            </div>
+
+            <div class="info-row">
+              <h3 class="info-row__heading">Dice to Roll</h3>
+
+              <div class="btn-group u-mg-x--auto" role="toolbar" aria-label="Number of dice to roll">
+                <button class="btn-group__btn is-active">1</button>
+
+                <button class="btn-group__btn">2</button>
+
+                <button class="btn-group__btn">3</button>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section class="card card--1-2">
-            <div class="card__blk">
-              <div class="info-row">
-                <h2 class="info-row__heading">Defender</h2>
+        <section class="card">
+          <div class="card__blk">
+            <div class="info-row">
+              <h2 class="info-row__heading">Defender Armies</h2>
 
-                <span id="defender-strength">0</span>
-              </div>
+              <span id="defender-strength">0</span>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
 
       <div class="container__col">

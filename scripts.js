@@ -2,22 +2,26 @@
 const resultVal = document.getElementById( 'result-val' ),
 			resultText = document.getElementById( 'result-text' ),
 			attackerRoll = document.getElementById( 'attacker-roll' ),
+			attackerStrength = document.getElementById( 'attacker-strength'),
 			attackerDice = document.getElementById( 'attack-dice' ),
       defenderRoll = document.getElementById( 'defender-roll' ),
+			defenderStrength = document.getElementById( 'defender-strength' ),
 			defenderDice = document.getElementById( 'defend-dice' ),
 			rollDiceTrigger = document.getElementById( 'roll-btn' );
 
 // Define a die
-function Die( sides ) {
-	this.sides = sides;
-
-  this.roll = roll => {
-  	return Math.floor( Math.random() * this.sides ) + 1;
+let Die = function( sides ) {
+  let roll = function() {
+  	return Math.floor( Math.random() * sides ) + 1;
   };
+
+	return {
+		roll: roll
+	};
 };
 
 // Define dice AKA a group of die
-function Dice( numDice, sides ) {
+let Dice = function( numDice, sides ) {
 	this.die = new Die( sides );
 	this.diceTotal = 0;
 	this.diceArray = [];
@@ -31,8 +35,6 @@ function Dice( numDice, sides ) {
 			this.diceArray += this.die.roll();
 			n++;
 		}
-
-		this.renderDice();
   };
 
 	this.resetTotal = resetTotal => {
@@ -49,13 +51,18 @@ function Dice( numDice, sides ) {
 };
 
 // Define an army
-function Army( numSoldiers ) {
+let Army = function( numSoldiers ) {
 	this.offense = numSoldiers;
   this.defense = numSoldiers;
 };
 
+// Define what happens before the battle begins between two armies
+let BattlePrep = function( attacker, defender ) {
+
+};
+
 // Define a battle between two armies, accepting two armies as parameters
-function Battle( attacker, defender ) {
+let Battle = function( attacker, defender ) {
 	this.attacker = attacker;
   this.defender = defender;
 	this.attackDice = new Dice( this.attacker.offense, 6 );
@@ -63,8 +70,15 @@ function Battle( attacker, defender ) {
 
   this.rollDice = rollDice => {
   	this.attackDice.rollGroup();
+		this.attackDice.renderDice();
 		this.defendDice.rollGroup();
+		this.defendDice.renderDice();
   };
+
+	this.preRender = preRender => {
+		attackerStrength.innerHTML = this.attacker.offense;
+		defenderStrength.innerHTML = this.defender.offense;
+	};
 
 	this.render = render => {
 		attackerRoll.innerHTML = this.attackDice.diceTotal;
@@ -103,6 +117,10 @@ function Battle( attacker, defender ) {
 let redArmy = new Army( 3 );
 let blueArmy = new Army( 5 );
 let coldWar = new Battle( redArmy, blueArmy );
+
+window.addEventListener('DOMContentLoaded', function() {
+	coldWar.preRender();
+})
 
 rollDiceTrigger.addEventListener('click', function() {
 	coldWar.init();

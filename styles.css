@@ -1,34 +1,9 @@
 /***********/
 /* Imports */
 /***********/
-@import 'meyer.css-reset.css';
-
-
-/*************/
-/* Variables */
-/*************/
-:root {
-  /* colors */
-  --blue: #29538B;
-  --light-blue: #446592;
-  --red: #D93332;
-  --dark-red: #912221;
-  --white: #FFF;
-  --off-white: #D7CBC4;
-  --gray: #E3E3E3;
-  --dark-gray: #CCC;
-
-  /* spacing */
-  --base-spacing: 10px;
-  --spacing--sm: var(--base-spacing);
-  --spacing--md: calc( var(--base-spacing) * 2 );
-  --spacing--lg: calc( var(--base-spacing) * 3 );
-  --spacing--xl: calc( var(--base-spacing) * 4 );
-
-  /* misc */
-  --border-radius: 5px;
-  --max-width: 800px;
-}
+@import 'css/html5doctor-css-reset.css';
+@import 'css/variables.css';
+@import 'css/utilities.css';
 
 
 /********/
@@ -47,6 +22,8 @@ body {
 /**************/
 /* Components */
 /**************/
+
+/** Containers **/
 .container {
   display: flex;
   flex-direction: row;
@@ -61,6 +38,7 @@ body {
   width: 100%;
 }
 
+/** Cards **/
 .card {
   background: var(--white);
   border-radius: var(--border-radius);
@@ -83,6 +61,7 @@ body {
   padding: 0 var(--spacing--md);
 }
 
+/** Info-Row **/
 .info-row {
   position: relative; /* allows absolute positioning within */
   padding: var(--spacing--lg) 0;
@@ -97,14 +76,14 @@ body {
   color: var(--white);
   font-size: 20px;
   font-weight: 700;
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0 var(--spacing--sm) 5px -8px rgba(0, 0, 0, 0.25);
 }
 
 .info-row__heading {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: var(--spacing--sm);
+  left: 0;
   font-size: 11px;
   letter-spacing: 0.075em;
   text-align: left;
@@ -121,6 +100,27 @@ body {
   color: var(--red);
 }
 
+/** Form-Row **/
+.form-ctrl {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing--sm) 0;
+}
+
+.form-ctrl__label {
+  font-size: 14px;
+  display: block;
+  text-align: left;
+  margin-bottom: var(--spacing--sm);
+}
+
+.form-ctrl__input {
+  width: 100%;
+  height: var(--spacing--xl);
+  font-size: 16px;
+}
+
+/** Die (Dice) **/
 .die {
   display: inline-flex;
   justify-content: center;
@@ -133,6 +133,7 @@ body {
   border-radius: var(--border-radius);
 }
 
+/** Btns (Buttons) **/
 .btn {
   display: block;
   cursor: pointer;
@@ -149,15 +150,32 @@ body {
   border-color: var(--dark-red);
 }
 
-
-/*************/
-/* Utilities */
-/*************/
-.u-mg-x--auto {
-  margin-left: auto !important;
-  margin-right: auto !important;
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--blue);
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
-.u-mg-t--md {
-  margin-top: var(--spacing--md) !important;
+.btn-group__btn {
+  width: 100%;
+  border: 0; /* resets default */
+  font-size: 14px;
+  cursor: pointer;
+  padding: var(--spacing--sm);
+  background: var(--white);
+  color: var(--blue);
+  border-right: 1px solid var(--light-blue);
 }
+
+  .btn-group__btn:last-of-type {
+    border-right: 0;
+  }
+
+  .btn-group__btn.is-active {
+    background: var(--blue);
+    color: var(--white);
+  }
