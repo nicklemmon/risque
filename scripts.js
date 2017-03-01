@@ -1,13 +1,13 @@
 // Global, constant variables
-const resultVal = document.getElementById( 'result-val' ),
-			resultText = document.getElementById( 'result-text' ),
-			attackerRoll = document.getElementById( 'attacker-roll' ),
-			attackerStrength = document.getElementById( 'attacker-strength'),
-			attackerDice = document.getElementById( 'attack-dice' ),
-      defenderRoll = document.getElementById( 'defender-roll' ),
-			defenderStrength = document.getElementById( 'defender-strength' ),
-			defenderDice = document.getElementById( 'defend-dice' ),
-			rollDiceTrigger = document.getElementById( 'roll-btn' );
+const RESULT_VAL = document.getElementById( 'result-val' ),
+			RESULT_TEXT = document.getElementById( 'result-text' ),
+			ATTACKER_ROLL = document.getElementById( 'attacker-roll' ),
+			ATTACKER_STRENGTH = document.getElementById( 'attacker-strength'),
+			ATTACKER_DICE = document.getElementById( 'attack-dice' ),
+      DEFENDER_ROLL = document.getElementById( 'defender-roll' ),
+			DEFENDER_STRENGTH = document.getElementById( 'defender-strength' ),
+			DEFENDER_DICE = document.getElementById( 'defend-dice' ),
+			ROLL_DICE_TRIGGER = document.getElementById( 'roll-btn' );
 
 // Define a die
 let Die = function( sides ) {
@@ -76,17 +76,17 @@ let Battle = function( attacker, defender ) {
   };
 
 	this.preRender = preRender => {
-		attackerStrength.innerHTML = this.attacker.offense;
-		defenderStrength.innerHTML = this.defender.offense;
+		ATTACKER_STRENGTH.innerHTML = this.attacker.offense;
+		DEFENDER_STRENGTH.innerHTML = this.defender.offense;
 	};
 
 	this.render = render => {
-		attackerRoll.innerHTML = this.attackDice.diceTotal;
-		attackerDice.innerHTML = this.attackDice.diceHTML.join('');
-    defenderRoll.innerHTML = this.defendDice.diceTotal;
-		defenderDice.innerHTML = this.defendDice.diceHTML.join('');
-    resultVal.innerHTML = this.result;
-		resultText.innerHTML = this.winnerStr;
+		ATTACKER_ROLL.innerHTML = this.attackDice.diceTotal;
+		ATTACKER_DICE.innerHTML = this.attackDice.diceHTML.join('');
+    DEFENDER_ROLL.innerHTML = this.defendDice.diceTotal;
+		DEFENDER_DICE.innerHTML = this.defendDice.diceHTML.join('');
+    RESULT_VAL.innerHTML = this.result;
+		RESULT_TEXT.innerHTML = this.winnerStr;
 	};
 
   this.determineWinner = determineWinner => {
@@ -122,6 +122,6 @@ window.addEventListener('DOMContentLoaded', function() {
 	coldWar.preRender();
 })
 
-rollDiceTrigger.addEventListener('click', function() {
+ROLL_DICE_TRIGGER.addEventListener('click', function() {
 	coldWar.init();
 });
