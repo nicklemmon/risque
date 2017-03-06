@@ -9,8 +9,8 @@
 
   <body>
     <main class="container">
-      <div class="container__col">
-        <section class="card">
+      <section class="card card--row">
+        <div class="card__1-2">
           <div class="card__blk">
             <div class="info-row">
               <h2 class="info-row__heading">Attacker Armies</h2>
@@ -18,66 +18,70 @@
               <span id="attacker-strength">0</span>
             </div>
 
-            <div class="info-row">
-              <h3 class="info-row__heading">Dice to Roll</h3>
+            <div class="js-btn-group btn-group u-mg-x--auto" role="toolbar" aria-label="Number of dice to roll">
+              <button class="js-btn-group__btn btn-group__btn is-active" data-num-dice="1">1</button>
 
-              <div class="btn-group u-mg-x--auto" role="toolbar" aria-label="Number of dice to roll">
-                <button class="btn-group__btn is-active">1</button>
+              <button class="js-btn-group__btn btn-group__btn" data-num-dice="2">2</button>
 
-                <button class="btn-group__btn">2</button>
-
-                <button class="btn-group__btn">3</button>
-              </div>
+              <button class="js-btn-group__btn btn-group__btn" data-num-dice="3">3</button>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="card">
+        <div class="card__1-2">
           <div class="card__blk">
             <div class="info-row">
               <h2 class="info-row__heading">Defender Armies</h2>
 
               <span id="defender-strength">0</span>
             </div>
-          </div>
-        </section>
-      </div>
 
-      <div class="container__col">
-        <section class="card">
-          <div class="card__blk">
-            <div class="info-row">
-              <h2 class="info-row__heading">Attacker Roll</h2>
+            <div class="js-btn-group btn-group u-mg-x--auto" role="toolbar" aria-label="Number of dice to roll">
+              <button class="js-btn-group__btn btn-group__btn is-active" data-num-dice="1">1</button>
 
-              <span id="attacker-roll">0</span>
-
-              <span class="info-row__footnote" id="attack-dice"></span>
-            </div>
-
-            <div class="info-row">
-              <h2 class="info-row__heading">Defender Roll</h2>
-
-              <span id="defender-roll">0</span>
-
-              <span class="info-row__footnote" id="defend-dice"></span>
-            </div>
-
-            <div class="info-row">
-              <h2 class="info-row__heading">Result</h2>
-
-              <span id="result-val">0</span>
+              <button class="js-btn-group__btn btn-group__btn" data-num-dice="2">2</button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="info-row info-row--results">
-            <span id="result-text">All quiet on the western front</span>
+
+      <section class="card">
+        <div class="card__blk">
+          <div class="info-row">
+            <h2 class="info-row__heading">Attacker Roll</h2>
+
+            <span id="attacker-roll">0</span>
+
+            <span class="info-row__footnote" id="attack-dice"></span>
           </div>
 
-          <button id="roll-btn" class="btn btn--primary u-mg-t--md u-mg-x--auto">Roll them dice</button>
-        </section>
-      </div>
+          <div class="info-row">
+            <h2 class="info-row__heading">Defender Roll</h2>
+
+            <span id="defender-roll">0</span>
+
+            <span class="info-row__footnote" id="defend-dice"></span>
+          </div>
+
+          <div class="info-row">
+            <h2 class="info-row__heading">Result</h2>
+
+            <span id="result-val">0</span>
+          </div>
+        </div>
+
+        <div class="info-row info-row--results">
+          <span id="result-text">All quiet on the western front</span>
+        </div>
+
+        <div class="card__blk">
+          <button id="roll-btn" class="btn btn--primary u-mg-x--auto">Roll them dice</button>
+        </div>
+      </section>
     </main>
 
-    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
   </body>
 </html>

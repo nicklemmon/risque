@@ -9,6 +9,11 @@ const RESULT_VAL = document.getElementById( 'result-val' ),
 			DEFENDER_DICE = document.getElementById( 'defend-dice' ),
 			ROLL_DICE_TRIGGER = document.getElementById( 'roll-btn' );
 
+let findAncestor = ( elem, className ) => {
+	while (( elem = elem.parentElement ) && !elem.classList.contains( className ));
+  return elem;
+};
+
 // Define a die
 let Die = function( sides ) {
   let roll = function() {
@@ -57,8 +62,41 @@ let Army = function( numSoldiers ) {
 };
 
 // Define what happens before the battle begins between two armies
-let BattlePrep = function( attacker, defender ) {
+let SelectNumDice = {
+	cacheDom: cacheDom => {
+		SelectNumDice.btnGroups = document.querySelectorAll('.js-btn-group');
+		SelectNumDice.btnGroupBtns = document.querySelectorAll('.js-btn-group__btn');
+	},
 
+	toggleActive: toggleActive = ( thisElem ) => {
+		let thisBtnGroup = findAncestor( thisElem, 'js-btn-group'),
+				btns = thisBtnGroup.children;
+
+		[].forEach.call( btns, function( elem ) {
+			elem.classList.remove( 'is-active' );
+		});
+
+		if ( !classie.has( thisElem, 'is-active') ) {
+			classie.add( thisElem, 'is-active' );
+		}
+	},
+
+	bindEvents: bindEvents => {
+		for ( let i = 0; i < SelectNumDice.btnGroupBtns.length; i++ ) {
+			this.btn = SelectNumDice.btnGroupBtns[i];
+
+			this.btn.onclick = function( event ) {
+				let thisBtn = event.target;
+
+				SelectNumDice.toggleActive( thisBtn );
+			}
+		}
+	},
+
+	init: init => {
+		SelectNumDice.cacheDom();
+		SelectNumDice.bindEvents();
+	}
 };
 
 // Define a battle between two armies, accepting two armies as parameters
@@ -114,12 +152,13 @@ let Battle = function( attacker, defender ) {
   };
 };
 
-let redArmy = new Army( 3 );
+let redArmy = new Army( 8 );
 let blueArmy = new Army( 5 );
 let coldWar = new Battle( redArmy, blueArmy );
 
 window.addEventListener('DOMContentLoaded', function() {
 	coldWar.preRender();
+	SelectNumDice.init();
 })
 
 ROLL_DICE_TRIGGER.addEventListener('click', function() {

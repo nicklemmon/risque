@@ -26,16 +26,10 @@ body {
 /** Containers **/
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--spacing--md);
-}
-
-.container__col {
-  padding: var(--spacing--sm);
-  width: 100%;
 }
 
 /** Cards **/
@@ -44,21 +38,25 @@ body {
   border-radius: var(--border-radius);
   max-width: var(--max-width);
   margin: var(--spacing--sm) 0;
-  padding: var(--spacing--lg) 0;
   box-shadow: 0 var(--spacing--sm) 15px -10px rgba(0, 0, 0, 0.25);
 }
 
-.card-row {
+.card--row {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
 }
 
-.card--1-2 {
-  width: calc( 50% - calc( var(--spacing--md) / 2 ) );
+.card__1-2 {
+  display: inline-block;
+  width: 50%;
 }
+
+  .card__1-2:last-of-type {
+    border-left: 1px solid var(--gray);
+  }
 
 .card__blk {
-  padding: 0 var(--spacing--md);
+  padding: var(--spacing--lg);
 }
 
 /** Info-Row **/
@@ -76,7 +74,6 @@ body {
   color: var(--white);
   font-size: 20px;
   font-weight: 700;
-  transform: scale(1.05);
   box-shadow: 0 var(--spacing--sm) 5px -8px rgba(0, 0, 0, 0.25);
 }
 
