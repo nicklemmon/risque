@@ -1,4 +1,6 @@
-// Global, constant variables
+//============================//
+// Global, constant variables //
+//============================//
 const RESULT_VAL = document.getElementById( 'result-val' ),
 			RESULT_TEXT = document.getElementById( 'result-text' ),
 			ATTACKER_ROLL = document.getElementById( 'attacker-roll' ),
@@ -9,12 +11,19 @@ const RESULT_VAL = document.getElementById( 'result-val' ),
 			DEFENDER_DICE = document.getElementById( 'defend-dice' ),
 			ROLL_DICE_TRIGGER = document.getElementById( 'roll-btn' );
 
+
+//===============================================//
+// Generic function used to find parent elements //
+//===============================================//
 let findAncestor = ( elem, className ) => {
 	while (( elem = elem.parentElement ) && !elem.classList.contains( className ));
   return elem;
 };
 
-// Define a die
+
+//==============//
+// Define a die //
+//==============//
 let Die = function( sides ) {
   let roll = function() {
   	return Math.floor( Math.random() * sides ) + 1;
@@ -25,7 +34,10 @@ let Die = function( sides ) {
 	};
 };
 
-// Define dice AKA a group of die
+
+//================================//
+// Define dice AKA a group of die //
+//================================//
 let Dice = function( numDice, sides ) {
 	this.die = new Die( sides );
 	this.diceTotal = 0;
@@ -55,13 +67,19 @@ let Dice = function( numDice, sides ) {
 	};
 };
 
-// Define an army
+
+//================//
+// Define an army //
+//================//
 let Army = function( numSoldiers ) {
 	this.offense = numSoldiers;
   this.defense = numSoldiers;
 };
 
-// Define what happens before the battle begins between two armies
+
+//=================================================================//
+// Define what happens before the battle begins between two armies //
+//=================================================================//
 let SelectNumDice = {
 	cacheDom: cacheDom => {
 		SelectNumDice.btnGroups = document.querySelectorAll('.js-btn-group');
@@ -99,7 +117,10 @@ let SelectNumDice = {
 	}
 };
 
-// Define a battle between two armies, accepting two armies as parameters
+
+//========================================================================//
+// Define a battle between two armies, accepting two armies as parameters //
+//========================================================================//
 let Battle = function( attacker, defender ) {
 	this.attacker = attacker;
   this.defender = defender;
