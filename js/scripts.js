@@ -6,9 +6,11 @@ const RESULT_VAL = document.getElementById( 'result-val' ),
 			ATTACKER_ROLL = document.getElementById( 'attacker-roll' ),
 			ATTACKER_STRENGTH = document.getElementById( 'attacker-strength'),
 			ATTACKER_DICE = document.getElementById( 'attack-dice' ),
+			ATTACKER_BTN_GROUP = document.getElementById( 'attacker-btn-group' ),
       DEFENDER_ROLL = document.getElementById( 'defender-roll' ),
 			DEFENDER_STRENGTH = document.getElementById( 'defender-strength' ),
 			DEFENDER_DICE = document.getElementById( 'defend-dice' ),
+			DEFENDER_BTN_GROUP = document.getElementById( 'defender-btn-group' ),
 			ROLL_DICE_TRIGGER = document.getElementById( 'roll-btn' );
 
 
@@ -84,10 +86,12 @@ let SelectNumDice = {
 	cacheDom: cacheDom => {
 		SelectNumDice.btnGroups = document.querySelectorAll('.js-btn-group');
 		SelectNumDice.btnGroupBtns = document.querySelectorAll('.js-btn-group__btn');
+		SelectNumDice.numAttackDice = 1;
+		SelectNumDice.numDefendDice = 1;
 	},
 
 	toggleActive: toggleActive = ( thisElem ) => {
-		let thisBtnGroup = findAncestor( thisElem, 'js-btn-group'),
+		let thisBtnGroup = findAncestor( thisElem, 'js-btn-group' ),
 				btns = thisBtnGroup.children;
 
 		[].forEach.call( btns, function( elem ) {
