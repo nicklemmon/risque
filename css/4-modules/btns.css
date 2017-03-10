@@ -1,0 +1,15 @@
+.btn {
+  display: block;
+  cursor: pointer;
+  font-size: 17px;
+  color: var(--white);
+  padding: var(--spacing--sm) var(--spacing--md);
+  border: 0;
+  border-bottom: 5px solid #000;
+  border-radius: var(--border-radius);
+}
+
+.btn--primary {
+  background: var(--red);
+  border-color: var(--dark-red);
+}

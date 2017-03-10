@@ -1,0 +1,11 @@
+.die {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--spacing--md);
+  height: var(--spacing--md);
+  margin-left: calc( var(--spacing--sm) / 2);
+  background: var(--red);
+  color: var(--white);
+  border-radius: var(--border-radius);
+}

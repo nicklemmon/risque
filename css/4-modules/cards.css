@@ -1,0 +1,25 @@
+.card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  max-width: var(--max-width);
+  margin: var(--spacing--sm) 0;
+  box-shadow: 0 var(--spacing--sm) 15px -10px rgba(0, 0, 0, 0.25);
+}
+
+.card--row {
+  display: flex;
+  flex-direction: row;
+}
+
+.card__1-2 {
+  display: inline-block;
+  width: 50%;
+}
+
+  .card__1-2:last-of-type {
+    border-left: 1px solid var(--gray);
+  }
+
+.card__blk {
+  padding: var(--spacing--lg);
+}

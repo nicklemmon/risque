@@ -74,52 +74,57 @@ let Dice = function( numDice, sides ) {
 // Define an army //
 //================//
 let Army = function( numSoldiers ) {
-	this.offense = numSoldiers;
-  this.defense = numSoldiers;
+	this.numArmies = numSoldiers;
+	this.numDice = 1; // the number of dice by default is 1, until the user selects a different number to roll
 };
 
 
-//=================================================================//
-// Define what happens before the battle begins between two armies //
-//=================================================================//
-let SelectNumDice = {
+//=============================//
+// Btn-group component scripts //
+//=============================//
+let BtnGroup = {
 	cacheDom: cacheDom => {
-		SelectNumDice.btnGroups = document.querySelectorAll('.js-btn-group');
-		SelectNumDice.btnGroupBtns = document.querySelectorAll('.js-btn-group__btn');
-		SelectNumDice.numAttackDice = 1;
-		SelectNumDice.numDefendDice = 1;
+		BtnGroup.btnGroups = document.querySelectorAll('.js-btn-group');
+		BtnGroup.btnGroupBtns = document.querySelectorAll('.js-btn-group__btn');
+		BtnGroup.selectedVal = null;
 	},
 
-	toggleActive: toggleActive = ( thisElem ) => {
+	toggleBtn: toggleBtn = ( thisElem ) => {
 		let thisBtnGroup = findAncestor( thisElem, 'js-btn-group' ),
-				btns = thisBtnGroup.children;
+				btns = thisBtnGroup.children,
+				selectedVal = thisBtnGroup.getAttribute( 'data-selected-val' );
 
-		[].forEach.call( btns, function( elem ) {
-			elem.classList.remove( 'is-active' );
+		[].forEach.call( btns, function( elem, index ) {
+			elem.classList.remove( 'is-active' ); // remove the 'is-active' class from all '__btns' within the current 'btn-group'
 		});
 
 		if ( !classie.has( thisElem, 'is-active') ) {
-			classie.add( thisElem, 'is-active' );
+			let btnVal = thisElem.innerHTML;
+
+			classie.add( thisElem, 'is-active' ); // if the 'is-active' class isn't present, add 'is-active' to the one that is acted on
+			thisBtnGroup.setAttribute( 'data-selected-val', btnVal );
 		}
+
+		BtnGroup.selectedVal = selectedVal; // store the value of the 'data-num-dice' attribute
 	},
 
 	bindEvents: bindEvents => {
-		for ( let i = 0; i < SelectNumDice.btnGroupBtns.length; i++ ) {
-			this.btn = SelectNumDice.btnGroupBtns[i];
+		for ( let i = 0; i < BtnGroup.btnGroupBtns.length; i++ ) {
+			BtnGroup.btn = BtnGroup.btnGroupBtns[i];
 
-			this.btn.onclick = function( event ) {
+			BtnGroup.btn.onclick = function( event ) {
 				let thisBtn = event.target;
 
-				SelectNumDice.toggleActive( thisBtn );
+				BtnGroup.toggleBtn( thisBtn );
 			}
 		}
 	},
 
 	init: init => {
-		SelectNumDice.cacheDom();
-		SelectNumDice.bindEvents();
+		BtnGroup.cacheDom();
+		BtnGroup.bindEvents();
 	}
-};
+}
 
 
 //========================================================================//
@@ -128,8 +133,6 @@ let SelectNumDice = {
 let Battle = function( attacker, defender ) {
 	this.attacker = attacker;
   this.defender = defender;
-	this.attackDice = new Dice( this.attacker.offense, 6 );
-  this.defendDice = new Dice( this.defender.defense, 6 );
 
   this.rollDice = rollDice => {
   	this.attackDice.rollGroup();
@@ -139,8 +142,16 @@ let Battle = function( attacker, defender ) {
   };
 
 	this.preRender = preRender => {
-		ATTACKER_STRENGTH.innerHTML = this.attacker.offense;
-		DEFENDER_STRENGTH.innerHTML = this.defender.offense;
+		ATTACKER_STRENGTH.innerHTML = this.attacker.numArmies;
+		DEFENDER_STRENGTH.innerHTML = this.defender.numArmies;
+	};
+
+	this.determineNumDice = determineNumDice => {
+		let attackerNumDice = ATTACKER_BTN_GROUP.getAttribute( 'data-selected-val' ),
+				defenderNumDice = DEFENDER_BTN_GROUP.getAttribute( 'data-selected-val' );
+
+		this.attackDice = new Dice( attackerNumDice, 6 );
+	  this.defendDice = new Dice( defenderNumDice, 6 );
 	};
 
 	this.render = render => {
@@ -169,6 +180,7 @@ let Battle = function( attacker, defender ) {
   };
 
   this.init = init => {
+		this.determineNumDice();
     this.rollDice();
 		this.determineWinner();
     this.render();
@@ -183,7 +195,7 @@ let coldWar = new Battle( redArmy, blueArmy );
 
 window.addEventListener('DOMContentLoaded', function() {
 	coldWar.preRender();
-	SelectNumDice.init();
+	BtnGroup.init();
 })
 
 ROLL_DICE_TRIGGER.addEventListener('click', function() {

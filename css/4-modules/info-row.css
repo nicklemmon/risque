@@ -1,0 +1,36 @@
+.info-row {
+  position: relative; /* allows absolute positioning within */
+  padding: var(--spacing--lg) 0;
+  border-top: 1px solid var(--dark-gray);
+  text-align: center;
+  font-size: 55px;
+  font-weight: 300;
+}
+
+.info-row--results {
+  background: var(--blue);
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 var(--spacing--sm) 5px -8px rgba(0, 0, 0, 0.25);
+}
+
+.info-row__heading {
+  position: absolute;
+  top: var(--spacing--sm);
+  left: 0;
+  font-size: 11px;
+  letter-spacing: 0.075em;
+  text-align: left;
+  font-weight: 700;
+  color: var(--dark-gray);
+  text-transform: uppercase;
+}
+
+.info-row__footnote {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 11px;
+  color: var(--red);
+}

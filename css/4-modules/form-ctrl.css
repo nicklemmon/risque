@@ -1,0 +1,18 @@
+.form-ctrl {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing--sm) 0;
+}
+
+.form-ctrl__label {
+  font-size: 14px;
+  display: block;
+  text-align: left;
+  margin-bottom: var(--spacing--sm);
+}
+
+.form-ctrl__input {
+  width: 100%;
+  height: var(--spacing--xl);
+  font-size: 16px;
+}
