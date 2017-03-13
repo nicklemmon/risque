@@ -17,13 +17,21 @@
   background: var(--white);
   color: var(--blue);
   border-right: 1px solid var(--light-blue);
+  transition: background var(--timing) var(--easing),
+              color var(--timing) var(--easing);
 }
 
   .btn-group__btn:last-of-type {
     border-right: 0;
   }
 
-  .btn-group__btn.is-active {
+  .btn-group__btn.is-active,
+  .btn-group:active {
     background: var(--blue);
     color: var(--white);
+  }
+
+  .btn-group__btn:focus {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    outline: none;
   }

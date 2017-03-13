@@ -13,3 +13,7 @@
   background: var(--red);
   border-color: var(--dark-red);
 }
+
+  .btn--primary:focus {
+    outline: 1px dashed var(--dark-red);
+  }

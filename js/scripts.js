@@ -49,7 +49,7 @@ let Dice = function( numDice, sides ) {
   this.rollGroup = rollGroup => {
 		var n = 0;
 
-		while (n < numDice) {
+		while ( n < numDice ) {
 			this.diceTotal += this.die.roll();
 			this.diceArray += this.die.roll();
 			n++;
@@ -188,6 +188,11 @@ let Battle = function( attacker, defender ) {
 		this.defendDice.resetTotal();
   };
 };
+
+
+//====================//
+// Initialize things  //
+//====================//
 
 let redArmy = new Army( 8 );
 let blueArmy = new Army( 5 );

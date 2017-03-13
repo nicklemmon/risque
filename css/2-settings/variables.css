@@ -22,4 +22,6 @@
   /* misc */
   --border-radius: 5px;
   --max-width: 800px;
+  --timing: 0.1s;
+  --easing: ease-in-out;
 }
