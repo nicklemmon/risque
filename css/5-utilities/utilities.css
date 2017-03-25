@@ -6,6 +6,10 @@
   margin-right: auto !important;
 }
 
+.u-mg-t--sm {
+  margin-top: var(--spacing--sm) !important;
+}
+
 .u-mg-t--md {
   margin-top: var(--spacing--md) !important;
 }

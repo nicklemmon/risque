@@ -8,6 +8,14 @@
   overflow: hidden;
 }
 
+.btn-group__label {
+  font-size: 14px;
+  letter-spacing: 0.0125em;
+  color: var(--blue);
+  background: var(--white);
+  margin-bottom: var(--spacing--sm);
+}
+
 .btn-group__btn {
   width: 100%;
   border: 0; /* resets default */

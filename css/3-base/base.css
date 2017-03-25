@@ -3,7 +3,7 @@
 }
 
 *:focus {
-  outline: 2px dashed currentColor;
+  outline: 1px dashed currentColor;
 }
 
 body {

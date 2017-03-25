@@ -13,7 +13,6 @@ const RESULT_VAL = document.getElementById( 'result-val' ),
 			DEFENDER_BTN_GROUP = document.getElementById( 'defender-btn-group' ),
 			ROLL_DICE_TRIGGER = document.getElementById( 'roll-btn' );
 
-
 //===============================================//
 // Generic function used to find parent elements //
 //===============================================//
@@ -64,7 +63,7 @@ let Dice = function( numDice, sides ) {
 
 	this.renderDice = renderDice => {
 		for (var i = 0; i < this.diceArray.length; i++) {
-			this.diceHTML.push('<span class="die">' + this.diceArray[i] + '</span>');
+			this.diceHTML.push(`<span class="die">${this.diceArray[i]}</span>`);
 		}
 	};
 };
@@ -83,13 +82,13 @@ let Army = function( numSoldiers ) {
 // Btn-group component scripts //
 //=============================//
 let BtnGroup = {
-	cacheDom: cacheDom => {
+	cacheDom: () => {
 		BtnGroup.btnGroups = document.querySelectorAll('.js-btn-group');
 		BtnGroup.btnGroupBtns = document.querySelectorAll('.js-btn-group__btn');
 		BtnGroup.selectedVal = null;
 	},
 
-	toggleBtn: toggleBtn = ( thisElem ) => {
+	toggleBtn: ( thisElem ) => {
 		let thisBtnGroup = findAncestor( thisElem, 'js-btn-group' ),
 				btns = thisBtnGroup.children,
 				selectedVal = thisBtnGroup.getAttribute( 'data-selected-val' );
@@ -108,7 +107,7 @@ let BtnGroup = {
 		BtnGroup.selectedVal = selectedVal; // store the value of the 'data-num-dice' attribute
 	},
 
-	bindEvents: bindEvents => {
+	bindEvents: () => {
 		for ( let i = 0; i < BtnGroup.btnGroupBtns.length; i++ ) {
 			BtnGroup.btn = BtnGroup.btnGroupBtns[i];
 
@@ -120,9 +119,49 @@ let BtnGroup = {
 		}
 	},
 
-	init: init => {
+	init: () => {
 		BtnGroup.cacheDom();
 		BtnGroup.bindEvents();
+	}
+}
+
+//==============================//
+// Form Group component scripts //
+//==============================//
+let FormGroup = {
+	cacheDom: () => {
+		FormGroup.formGrps = document.querySelectorAll( '.js-form-grp' );
+		FormGroup.formGrpInputs = document.querySelectorAll( '.js-form-grp__input' );
+		FormGroup.formGrpBtns = document.querySelectorAll( '.js-form-grp__btn' );
+	},
+
+	bindEvents: () => {
+		for ( let i = 0; i < FormGroup.formGrps.length; i++ ) {
+			thisForm = FormGroup.formGrps[i];
+
+			thisForm.onsubmit = function( event ) {
+				event.preventDefault();
+				thisFormBtn = this.querySelectorAll( '.js-form-grp__btn' )[0];
+				thisFormInput = this.querySelectorAll( '.js-form-grp__input' )[0];
+				thisTarget = thisFormBtn.getAttribute( 'data-target' ),
+				thisTargetEl = document.getElementById( thisTarget );
+
+				thisTargetEl.innerHTML = thisFormInput.value;
+
+				thisFormInput.value = '';
+			}
+		}
+	},
+
+	storeVal: ( thisBtn ) => {
+		console.log( thisBtn );
+	},
+
+	init: () => {
+		FormGroup.cacheDom();
+		FormGroup.bindEvents();
+
+		console.log('init');
 	}
 }
 
@@ -194,13 +233,14 @@ let Battle = function( attacker, defender ) {
 // Initialize things  //
 //====================//
 
-let redArmy = new Army( 8 );
-let blueArmy = new Army( 5 );
+let redArmy = new Army( 0 );
+let blueArmy = new Army( 0 );
 let coldWar = new Battle( redArmy, blueArmy );
 
 window.addEventListener('DOMContentLoaded', function() {
 	coldWar.preRender();
 	BtnGroup.init();
+	FormGroup.init();
 })
 
 ROLL_DICE_TRIGGER.addEventListener('click', function() {

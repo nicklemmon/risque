@@ -18,7 +18,17 @@
               <span id="attacker-strength">0</span>
             </div>
 
-            <div id="attacker-btn-group" data-selected-val="1" class="js-btn-group js-btn-group--attacker btn-group u-mg-x--auto" role="toolbar" aria-label="Number of attacking dice to roll">
+            <form class="js-form-grp form-grp">
+              <label class="form-grp__label" for="attacker-army-input">Select Number of Armies</label>
+
+              <input class="js-form-grp__input form-grp__input" type="number" id="attacker-army-input" name="attacker-army-input">
+
+              <input type="submit" data-target="attacker-strength" class="js-form-grp__btn btn btn--primary u-mg-t--sm">
+            </form>
+
+            <p id="select-num-attack-dice-label" class="btn-group__label">Select Number of Dice</p>
+
+            <div id="attacker-btn-group" data-selected-val="1" class="js-btn-group js-btn-group--attacker btn-group u-mg-x--auto" role="toolbar" aria-describedby="select-num-attack-dice-label">
               <button class="js-btn-group__btn btn-group__btn is-active">1</button>
 
               <button class="js-btn-group__btn btn-group__btn">2</button>
@@ -36,7 +46,17 @@
               <span id="defender-strength">0</span>
             </div>
 
-            <div id="defender-btn-group" data-selected-val="1" class="js-btn-group js-btn-group--defender btn-group u-mg-x--auto" role="toolbar" aria-label="Number of defending dice to roll">
+            <form class="js-form-grp form-grp">
+              <label class="form-grp__label" for="defender-army-input">Select Number of Armies</label>
+
+              <input class="js-form-grp__input form-grp__input" type="number" id="defender-army-input" name="defender-army-input">
+
+              <input type="submit" data-target="defender-strength" class="js-form-grp__btn btn btn--primary u-mg-t--sm">
+            </form>
+
+            <p id="select-num-defend-dice-label" class="btn-group__label">Select Number of Dice</p>
+
+            <div id="defender-btn-group" data-selected-val="1" class="js-btn-group js-btn-group--defender btn-group u-mg-x--auto" role="toolbar" aria-describedby="select-num-defend-dice-label">
               <button class="js-btn-group__btn btn-group__btn is-active">1</button>
 
               <button class="js-btn-group__btn btn-group__btn">2</button>

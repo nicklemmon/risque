@@ -1,7 +1,9 @@
 .btn {
   display: block;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
   color: var(--white);
   padding: var(--spacing--sm) var(--spacing--md);
   border: 0;
