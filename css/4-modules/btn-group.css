@@ -39,6 +39,11 @@
     color: var(--white);
   }
 
+  .btn-group__btn:disabled {
+    cursor: not-allowed;
+    color: var(--dark-gray);
+  }
+
   .btn-group__btn:focus {
     background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
     outline: none;

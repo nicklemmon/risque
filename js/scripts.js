@@ -141,27 +141,92 @@ let FormGroup = {
 
 			thisForm.onsubmit = function( event ) {
 				event.preventDefault();
-				thisFormBtn = this.querySelectorAll( '.js-form-grp__btn' )[0];
-				thisFormInput = this.querySelectorAll( '.js-form-grp__input' )[0];
-				thisTarget = thisFormBtn.getAttribute( 'data-target' ),
-				thisTargetEl = document.getElementById( thisTarget );
 
-				thisTargetEl.innerHTML = thisFormInput.value;
-
-				thisFormInput.value = '';
+				FormGroup.renderVal( this );
+				DiceLimits.storeVals();
+				DiceLimits.limitAttackDice();
+				DiceLimits.limitDefendDice();
 			}
 		}
 	},
 
-	storeVal: ( thisBtn ) => {
-		console.log( thisBtn );
+	renderVal: ( thisForm ) => {
+		thisFormBtn = thisForm.querySelectorAll( '.js-form-grp__btn' )[0];
+		thisFormInput = thisForm.querySelectorAll( '.js-form-grp__input' )[0];
+		thisTarget = thisFormBtn.getAttribute( 'data-target' ),
+		thisTargetEl = document.getElementById( thisTarget );
+
+		if ( thisFormInput.value.length ) {
+			thisTargetEl.innerHTML = thisFormInput.value;
+		}
+
+		else {
+			thisTargetEl.innerHTML = '0';
+		}
+
+		thisFormInput.value = '';
 	},
 
 	init: () => {
 		FormGroup.cacheDom();
 		FormGroup.bindEvents();
+	}
+}
 
-		console.log('init');
+
+//==========================//
+// Check Dice Number Limits //
+//==========================//
+let DiceLimits = {
+	storeVals: () => {
+		this.attackerStr = ATTACKER_STRENGTH.innerHTML;
+		this.defenderStr = DEFENDER_STRENGTH.innerHTML;
+	},
+
+	limitAttackDice: () => {
+		if ( this.attackerStr >= 3 ) {
+			this.activeAttackBtns = 3;
+		}
+
+		else {
+			this.activeAttackBtns = this.attackerStr;
+		}
+
+		DiceLimits.enableAttackBtns();
+	},
+
+	limitDefendDice: () => {
+		if ( this.defenderStr >= 2 ) {
+			this.activeDefendBtns = 2;
+		}
+
+		else {
+			this.activeDefendBtns = this.defenderStr;
+		}
+
+		DiceLimits.enableDefendBtns();
+	},
+
+	enableAttackBtns: () => {
+		attackBtns = ATTACKER_BTN_GROUP.querySelectorAll( '.js-btn-group__btn' );
+
+		for ( i = 0; i <= this.activeAttackBtns - 1; i++ ) {
+			attackBtns[i].removeAttribute( 'disabled' );
+		}
+	},
+
+	enableDefendBtns: () => {
+		defendBtns = DEFENDER_BTN_GROUP.querySelectorAll( '.js-btn-group__btn');
+
+		for ( i = 0; i <= this.activeDefendBtns - 1; i++ ) {
+			defendBtns[i].removeAttribute( 'disabled' );
+		}
+	},
+
+	init: () => {
+		DiceLimits.storeVals();
+		DiceLimits.limitAttackDice();
+		DiceLimits.limitDefendDice();
 	}
 }
 
@@ -241,6 +306,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	coldWar.preRender();
 	BtnGroup.init();
 	FormGroup.init();
+	DiceLimits.init();
 })
 
 ROLL_DICE_TRIGGER.addEventListener('click', function() {
