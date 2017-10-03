@@ -18,6 +18,7 @@ const RESULT_VAL = document.getElementById( 'result-val' ),
 //===============================================//
 let findAncestor = ( elem, className ) => {
 	while (( elem = elem.parentElement ) && !elem.classList.contains( className ));
+
   return elem;
 };
 

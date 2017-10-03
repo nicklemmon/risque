@@ -24,4 +24,7 @@
   --max-width: 800px;
   --timing: 0.1s;
   --easing: ease-in-out;
+
+  /* breakpoints */
+  --breakpoint--sm: 600px;
 }

@@ -3,5 +3,11 @@
   flex-direction: column;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--spacing--md);
+  padding: var(--spacing--md) 0;
+}
+
+@media screen and ( min-width: 600px ) {
+  .container {
+    padding: var(--spacing--md);
+  }
 }
